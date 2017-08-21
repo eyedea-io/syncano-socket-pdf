@@ -1,0 +1,31 @@
+name: pdf
+description: Generate PDF from templates
+version: 0.0.1
+keywords:
+  - pdf
+  - document
+  - generate
+  - eyedea
+endpoints:
+  generate:
+    description: Generate document
+    file: scripts/generate.js
+    parameters:
+      template:
+        type: string
+        description: Template to parse
+        example: |
+          <div>
+            Hello world
+          </div>
+    response:
+      mimetype: application/pdf
+      examples:
+        - exit_code: 200
+          description: Success
+        - exit_code: 400
+          description: Failed
+          example: |
+            {
+              "message": "Failed to generate PDF."
+            }
