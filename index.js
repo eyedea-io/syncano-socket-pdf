@@ -18,6 +18,7 @@ exporter.on('charged', () => {
       .then(queueJob)
       .then(resolveJob)
       .then(({pdf, filename}) => {
+        res.setHeader('Access-Control-Allow-Origin', '*')
         res.setHeader('Content-Type', 'application/pdf')
         res.setHeader(
           'Content-Disposition',
