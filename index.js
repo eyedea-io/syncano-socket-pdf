@@ -5,8 +5,8 @@ const app = express()
 const fs = require('fs')
 const exporter = new ElectronPDF()
 
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json({limit: '5mb'}))
+app.use(bodyParser.urlencoded({extended: true, limit: '5mb'}))
 
 exporter.on('charged', () => {
   app.listen(3000, 'localhost', () => {})
@@ -30,7 +30,7 @@ exporter.on('charged', () => {
 
 exporter.start()
 
-function createTemplate(template) {
+function createTemplate (template) {
   return new Promise((resolve, reject) => {
     const filename = `${hashString(template).toString(36)}`
 
@@ -40,7 +40,7 @@ function createTemplate(template) {
   })
 }
 
-function queueJob(filename) {
+function queueJob (filename) {
   const jobOptions = {
     inMemory: true,
     closeWindow: false
@@ -51,7 +51,7 @@ function queueJob(filename) {
     .then(job => ({job, filename}))
 }
 
-function resolveJob({job, filename}) {
+function resolveJob ({job, filename}) {
   return new Promise(resolve => {
     job.on('job-complete', r => {
       resolve({pdf: r.results[0], filename})
@@ -62,7 +62,7 @@ function resolveJob({job, filename}) {
   })
 }
 
-function hashString(str, seed) {
+function hashString (str, seed) {
   let hash = 0
   let i
   let chr
