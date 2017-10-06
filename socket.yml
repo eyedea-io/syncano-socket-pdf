@@ -1,31 +1,27 @@
 name: pdf
-description: Generate PDF from templates
+description: HTML to PDF generator
 version: 0.0.1
-keywords:
-  - pdf
-  - document
-  - generate
-  - eyedea
+
 endpoints:
   generate:
-    description: Generate document
-    file: scripts/generate.js
+    description: Generate PDF from HTML
     parameters:
-      template:
+      filename:
+        type: filename
+        description: Name of the output file
+        example: output.pdf
+      html:
         type: string
-        description: Template to parse
-        example: |
-          <div>
-            Hello world
-          </div>
+        descritption: HTML to convert into PDF
+        eample: <h1>Title!<h1><p>Paragraph!</p>
     response:
-      mimetype: application/pdf
-      examples:
-        - exit_code: 200
-          description: Success
-        - exit_code: 400
-          description: Failed
-          example: |
-            {
-              "message": "Failed to generate PDF."
-            }
+      success:
+        mimetype: application/pdf
+        description: PDF successfuly generated
+      fail:
+        mimetype: application/json
+        description: Zip generation failed
+        exit_code: 400
+        parameters:
+          message:
+            type: string
