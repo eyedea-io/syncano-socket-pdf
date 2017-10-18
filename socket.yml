@@ -6,7 +6,7 @@ endpoints:
     description: Generate PDF from HTML
     parameters:
       filename:
-        type: filename
+        type: string
         description: Name of the output file
         example: output.pdf
       html:

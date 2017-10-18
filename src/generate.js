@@ -5,7 +5,7 @@ export default (ctx) => {
   const {response} = Syncano(ctx)
 
   return new Promise((resolve, reject) => {
-    pdf.convert({html: ctx.args.html}, (err, result) => {
+    pdf.convert(ctx.args, (err, result) => {
       if (err) {
         resolve(response({message: err.message}, 400))
       } else {
