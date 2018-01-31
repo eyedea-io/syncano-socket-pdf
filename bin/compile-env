@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+mkdir -p .dist
+cp package.json .dist
+cd .dist
+PHANTOMJS_PLATFORM=linux PHANTOMJS_ARCH=x64 node node_modules/phantomjs-prebuilt/install.js
+npm install --production
