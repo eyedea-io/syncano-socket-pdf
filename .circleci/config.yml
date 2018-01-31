@@ -42,6 +42,7 @@ jobs:
 
       - store_artifacts:
           path: ~/repo/test/.results
+          destination: results
 
 workflows:
   version: 2
