@@ -19,7 +19,7 @@ describe('generate', function () {
     fs.writeFileSync(path.join(__dirname, '.results/pdf1.pdf'), res.data)
   })
 
-  it.only('pdf with css', async () => {
+  it('pdf with css', async () => {
     const argsWithCss = Object.assign(args, {css: 'h1 {font-size: 60px}'})
     const res = await run('generate', {args: argsWithCss})
 
