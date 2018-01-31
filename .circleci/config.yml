@@ -56,7 +56,7 @@ jobs:
           key: v5-repo-{{ .Environment.CIRCLE_SHA1 }}
       - add_ssh_keys:
           fingerprints:
-            - "16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48"
+            - "4a:cb:e4:1c:48:a2:3b:aa:f5:56:cb:80:db:7d:14:7c"
       - run: SYNCANO_AUTH_KEY=$STAGING_SYNCANO_AUTH_KEY SYNCANO_HOST=api.syncano.rocks npx s submit ${SOCKET_NAME} -b patch
       - run: SYNCANO_AUTH_KEY=$STAGING_SYNCANO_AUTH_KEY SYNCANO_HOST=api.syncano.rocks npx s publish ${SOCKET_NAME}
       - run: git config --global user.email $GITHUB_EMAIL && git config --global user.name $GITHUB_NAME
