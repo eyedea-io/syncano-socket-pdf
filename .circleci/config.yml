@@ -54,8 +54,8 @@ jobs:
     steps:
       - restore_cache:
           key: v5-repo-{{ .Environment.CIRCLE_SHA1 }}
-      - run: SYNCANO_HOST=api.syncano.rocks npx s submit ${SOCKET_NAME} -b patch
-      - run: SYNCANO_HOST=api.syncano.rocks npx s publish ${SOCKET_NAME}
+      - run: SYNCANO_AUTH_KEY=$STAGING_SYNCANO_AUTH_KEY SYNCANO_HOST=api.syncano.rocks npx s submit ${SOCKET_NAME} -b patch
+      - run: SYNCANO_AUTH_KEY=$STAGING_SYNCANO_AUTH_KEY SYNCANO_HOST=api.syncano.rocks npx s publish ${SOCKET_NAME}
       - run: git config --global user.email $GITHUB_EMAIL && git config --global user.name $GITHUB_NAME
       - run: git commit -a -m "Bumping version [ci skip]" && git push origin $CIRCLE_BRANCH
 
