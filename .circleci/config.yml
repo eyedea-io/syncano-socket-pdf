@@ -55,7 +55,7 @@ jobs:
       - restore_cache:
           key: v5-repo-{{ .Environment.CIRCLE_SHA1 }}
       - add_ssh_keys
-      - run: mkdir ~/.ssh && echo '2048 SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8 github.com (RSA)' > ~/.ssh/known_hosts
+      - run: echo '2048 SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8 github.com (RSA)' > ~/.ssh/known_hosts
       - run: SYNCANO_AUTH_KEY=$STAGING_SYNCANO_AUTH_KEY SYNCANO_HOST=api.syncano.rocks npx s submit ${SOCKET_NAME} -b patch
       - run: SYNCANO_AUTH_KEY=$STAGING_SYNCANO_AUTH_KEY SYNCANO_HOST=api.syncano.rocks npx s publish ${SOCKET_NAME}
       - run: git config --global user.email $GITHUB_EMAIL && git config --global user.name $GITHUB_NAME
