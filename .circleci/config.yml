@@ -44,6 +44,21 @@ jobs:
           path: ~/repo/test/.results
           destination: results
 
+  deploy_staging:
+    name: Deploy
+    docker:
+      - image: circleci/node:latest
+
+    working_directory: ~/repo
+
+    steps:
+      - restore_cache:
+          key: v5-repo-{{ .Environment.CIRCLE_SHA1 }}
+      - run: SYNCANO_HOST=api.syncano.rocks npx s submit ${SOCKET_NAME} -b patch
+      - run: SYNCANO_HOST=api.syncano.rocks npx s publish ${SOCKET_NAME}
+      - run: git config --global user.email $GITHUB_EMAIL && git config --global user.name $GITHUB_NAME
+      - run: git commit -a -m "Bumping version [ci skip]" && git push origin $CIRCLE_BRANCH
+
 workflows:
   version: 2
   build-test:
@@ -52,3 +67,9 @@ workflows:
       - test:
           requires:
             - build
+      - deploy_staging:
+          requires:
+            - test
+          filters:
+            branches:
+              only: master
