@@ -12,7 +12,11 @@ endpoints:
       html:
         type: string
         descritption: HTML to convert into PDF
-        eample: <h1>Title!<h1><p>Paragraph!</p>
+        example: <h1>Title!<h1><p>Paragraph!</p>
+      css:
+        type: string
+        descritption: CSS used to convert into PDF
+        example: 'h1 {font-size: 60px}'
     response:
       success:
         mimetype: application/pdf

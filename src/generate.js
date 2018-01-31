@@ -1,8 +1,8 @@
 import pdf from 'phantom-html2pdf'
-import Syncano from 'syncano-server'
+import Syncano from '@syncano/core'
 
 export default (ctx) => {
-  const {response} = Syncano(ctx)
+  const {response} = new Syncano(ctx)
 
   return new Promise((resolve, reject) => {
     pdf.convert(ctx.args, (err, result) => {
