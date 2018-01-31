@@ -1,6 +1,6 @@
 name: pdf
 description: HTML to PDF generator
-version: 0.0.5
+version: 0.0.6
 endpoints:
   generate:
     description: Generate PDF from HTML

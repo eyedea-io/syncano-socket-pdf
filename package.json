@@ -15,8 +15,9 @@
     "test:lint": "standard --fix"
   },
   "dependencies": {
-    "phantom-html2pdf": "^4.0.1",
-    "@syncano/core": "canary"
+    "@syncano/cli": "^0.8.0-alpha.617377ac",
+    "@syncano/core": "canary",
+    "phantom-html2pdf": "^4.0.1"
   },
   "devDependencies": {
     "@syncano/test": "canary",
