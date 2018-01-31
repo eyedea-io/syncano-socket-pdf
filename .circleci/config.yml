@@ -15,7 +15,7 @@ jobs:
           keys:
           - v5-dependencies-{{ checksum "package.json" }}
 
-      - run: npm install @syncano/cli@canary
+      - run: npm install @syncano/cli@canary --no-save
       - run: npm install
 
       - save_cache:
