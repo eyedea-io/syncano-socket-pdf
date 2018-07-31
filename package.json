@@ -22,7 +22,7 @@
     "test:unit": "NODE_ENV=test jest --forceExit --detectOpenHandles test/unit/.*\\.test\\.js",
     "test:e2e": "NODE_ENV=test jest test/e2e/.*\\.test\\.js",
     "test:audit": "npm audit",
-    "test:lint": "tslint --fix -c tslint.json ./workspaces/**/*.tsx"
+    "test:lint": "tslint --fix -c tslint.json ./src/**/*.ts"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.42",
