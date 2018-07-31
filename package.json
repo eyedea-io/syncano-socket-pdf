@@ -33,6 +33,7 @@
     "@syncano/test-tools": "0.13.0-alpha.e625a06e",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^23.0.1",
+    "babel-plugin-istanbul": "^4.1.6",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "jest": "^23.4.2",
     "npm-run-all": "^4.1.1",
@@ -47,7 +48,8 @@
     "testEnvironment": "node",
     "globals": {
       "ts-jest": {
-        "useBabelrc": true
+        "useBabelrc": false,
+        "ignoreCoverageForAllDecorators": true
       }
     },
     "moduleFileExtensions": [
@@ -57,7 +59,7 @@
     "testMatch": [],
     "collectCoverage": true,
     "collectCoverageFrom": [
-      ".dist/**"
+      "src/**"
     ],
     "coverageThreshold": {
       "global": {
@@ -71,7 +73,8 @@
   "babel": {
     "sourceMaps": "inline",
     "plugins": [
-      "transform-class-properties"
+      "transform-class-properties",
+      "istanbul"
     ],
     "presets": [
       "@babel/preset-typescript",
