@@ -10,7 +10,7 @@ describe('generate', function () {
     filename: 'test.pdf'
   }
 
-  it('pdf', async () => {
+  it('pdf gen', async () => {
     const result = await run('generate', {args})
 
     expect(result).toHaveProperty('code', 200)
@@ -19,7 +19,19 @@ describe('generate', function () {
     fs.writeFileSync(path.join(__dirname, '.results/pdf1.pdf'), result.data)
   })
 
-  it('pdf with css', async () => {
+  it('pdf gen without filename', async () => {
+    const args = {
+      html: '<h1>Testing!</h1><p>With some paragraph</p>'
+    }
+    const result = await run('generate', {args})
+
+    expect(result).toHaveProperty('code', 200)
+    expect(result).toHaveProperty('mimetype', 'application/pdf')
+
+    fs.writeFileSync(path.join(__dirname, '.results/output.pdf'), result.data)
+  })
+
+  it('pdf gen with css', async () => {
     const argsWithCss = Object.assign(args, {css: 'h1 {font-size: 60px}'})
     const result = await run('generate', {args: argsWithCss})
 
