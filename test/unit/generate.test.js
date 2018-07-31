@@ -1,7 +1,6 @@
 /* global describe it */
 import fs from 'fs'
 import path from 'path'
-import {assert} from 'chai'
 import {run} from '@syncano/test'
 
 describe('generate', function () {
@@ -10,13 +9,14 @@ describe('generate', function () {
     filename: 'test.pdf'
   }
 
-  it('pdf', async () => {
-    const res = await run('generate', {args})
+  it.only('pdf', async () => {
+    const result = await run('generate', {args})
 
-    assert.propertyVal(res, 'code', 200)
-    assert.propertyVal(res, 'mimetype', 'application/pdf')
+    console.log("XXX", result)
+    expect(result).toHaveProperty('code', 200)
+    expect(result).toHaveProperty('mimetype', 'application/pdf')
 
-    fs.writeFileSync(path.join(__dirname, '.results/pdf1.pdf'), res.data)
+    fs.writeFileSync(path.join(__dirname, '.results/pdf1.pdf'), result.data)
   })
 
   it('pdf with css', async () => {

@@ -4,20 +4,21 @@ version: 0.0.8
 endpoints:
   generate:
     description: Generate PDF from HTML
-    parameters:
-      filename:
-        type: string
-        description: Name of the output file
-        example: output.pdf
-      html:
-        type: string
-        descritption: HTML to convert into PDF
-        example: <h1>Title!<h1><p>Paragraph!</p>
-      css:
-        type: string
-        descritption: CSS used to convert into PDF
-        example: 'h1 {font-size: 60px}'
-    response:
+    inputs:
+      properties:
+        filename:
+          type: string
+          description: Name of the output file
+          example: output.pdf
+        html:
+          type: string
+          descritption: HTML to convert into PDF
+          example: <h1>Title!<h1><p>Paragraph!</p>
+        css:
+          type: string
+          descritption: CSS used to convert into PDF
+          example: 'h1 {font-size: 60px}'
+    outputs:
       success:
         mimetype: application/pdf
         description: PDF successfuly generated

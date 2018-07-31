@@ -1,38 +1,81 @@
 {
-  "name": "pdf",
-  "version": "0.0.1",
+  "name": "@eyedea-sockets/pdf",
+  "version": "0.1.1",
+  "public": true,
+  "description": "Syncano Socket for generating PDF from HTML",
+  "author": "EYEDEA",
+  "repository": "https://github.com/eyedea-io/syncano-socket-pdf.git",
   "license": "MIT",
-  "scripts": {
-    "build": "npm install && npm run build:src && npm run build:env",
-    "build:src": "sh ./bin/compile",
-    "build:env": "sh ./bin/compile-env",
-    "install": "node node_modules/phantomjs-prebuilt/install.js",
-    "test": "npm-run-all --parallel test:lint test:e2e:coverage",
-    "test:e2e-single": "NODE_ENV=test mocha -s 1800 --reporter spec --require babel-register --timeout 8000",
-    "test:e2e-single:coverage": "nyc --produce-source-map=true NODE_ENV=test mocha -s 1800 --reporter spec --require babel-register --timeout 4000",
-    "test:e2e": "npm run test:e2e-single -- 'test/*.test.js'",
-    "test:e2e:coverage": "nyc --produce-source-map=true npm run test:e2e",
-    "test:lint": "standard --fix"
+  "peerDependencies": {
+    "@syncano/cli": "0.13.0-alpha.e625a06e"
   },
   "dependencies": {
-    "@syncano/core": "canary",
+    "@eyedea/syncano": "0.2.0",
     "phantom-html2pdf": "^4.0.1"
   },
+  "scripts": {
+    "build": "npm run build:src && npm run build:env",
+    "build:src": "sh ./bin/compile",
+    "build:env": "sh ./bin/compile-env",
+    "test": "npm-run-all --parallel test:lint test:audit test:unit",
+    "codecov": "codecov",
+    "test:unit": "NODE_ENV=test jest --forceExit --detectOpenHandles test/unit/.*\\.test\\.js",
+    "test:e2e": "NODE_ENV=test jest test/e2e/.*\\.test\\.js",
+    "test:audit": "npm audit",
+    "test:lint": "tslint --fix -c tslint.json ./workspaces/**/*.tsx"
+  },
   "devDependencies": {
-    "@syncano/test": "canary",
-    "@syncano/test-tools": "canary",
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
-    "chai": "^4.1.2",
-    "mocha": "^5.0.0",
+    "@babel/cli": "^7.0.0-beta.42",
+    "@babel/core": "^7.0.0-beta.42",
+    "@babel/preset-env": "^7.0.0-beta.42",
+    "@babel/preset-typescript": "^7.0.0-beta.42",
+    "@syncano/test": "0.13.0-alpha.e625a06e",
+    "@syncano/test-tools": "0.13.0-alpha.e625a06e",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^23.0.1",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "jest": "^23.4.2",
     "npm-run-all": "^4.1.1",
-    "nyc": "^11.4.1",
-    "standard": "^10.0.3"
+    "sinon": "^5.1.0",
+    "ts-jest": "23.0.1",
+    "tslint": "5.11.0",
+    "tslint-eslint-rules": "5.3.1",
+    "tslint-react": "3.6.0",
+    "typescript": "^2.7.2"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "globals": {
+      "ts-jest": {
+        "useBabelrc": true
+      }
+    },
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ],
+    "testMatch": [],
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      ".dist/**"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 80,
+        "functions": 80,
+        "lines": 80,
+        "statements": -10
+      }
+    }
   },
   "babel": {
+    "plugins": [
+      "transform-class-properties"
+    ],
     "presets": [
+      "@babel/preset-typescript",
       [
-        "env",
+        "@babel/preset-env",
         {
           "targets": {
             "node": "8"
