@@ -2,6 +2,7 @@
 import fs from 'fs'
 import path from 'path'
 import {run} from '@syncano/test'
+import pdfMock from 'phantom-html2pdf'
 
 describe('generate', function () {
   const args = {
@@ -9,10 +10,9 @@ describe('generate', function () {
     filename: 'test.pdf'
   }
 
-  it.only('pdf', async () => {
+  it('pdf', async () => {
     const result = await run('generate', {args})
 
-    console.log("XXX", result)
     expect(result).toHaveProperty('code', 200)
     expect(result).toHaveProperty('mimetype', 'application/pdf')
 
@@ -21,11 +21,24 @@ describe('generate', function () {
 
   it('pdf with css', async () => {
     const argsWithCss = Object.assign(args, {css: 'h1 {font-size: 60px}'})
-    const res = await run('generate', {args: argsWithCss})
+    const result = await run('generate', {args: argsWithCss})
 
-    assert.propertyVal(res, 'code', 200)
-    assert.propertyVal(res, 'mimetype', 'application/pdf')
+    expect(result).toHaveProperty('code', 200)
+    expect(result).toHaveProperty('mimetype', 'application/pdf')
 
-    fs.writeFileSync(path.join(__dirname, '.results/pdf2.pdf'), res.data)
+    fs.writeFileSync(path.join(__dirname, '.results/pdf2.pdf'), result.data)
+  })
+
+  it('pdf gen error', async () => {
+    const errorMsg = 'Error'
+    pdfMock.convert = jest.fn()
+    pdfMock.convert.mockImplementationOnce((args, callback) => {
+      callback({message: errorMsg})
+    })
+
+    const result = await run('generate', {args})
+
+    expect(result).toHaveProperty('code', 400)
+    expect(result.data).toHaveProperty('message', errorMsg)
   })
 })

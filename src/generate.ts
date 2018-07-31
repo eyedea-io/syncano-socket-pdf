@@ -16,7 +16,7 @@ class Endpoint extends S.Endpoint<Args> {
     const output = await new Promise((resolve, reject) => {
       pdf.convert(args, (err, result) => {
         if (err) {
-          resolve(response({message: err.message}, 400))
+          reject({message: err.message})
         } else {
           return result.toBuffer((returnedBuffer) => {
             resolve(response(returnedBuffer, 200, 'application/pdf', {
