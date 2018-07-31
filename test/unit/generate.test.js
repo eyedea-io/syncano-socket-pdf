@@ -29,7 +29,7 @@ describe('generate', function () {
     fs.writeFileSync(path.join(__dirname, '.results/pdf2.pdf'), result.data)
   })
 
-  it.only('pdf gen error', async () => {
+  it('pdf gen error', async () => {
     const errorMsg = 'Error'
     pdfMock.convert = jest.fn()
     pdfMock.convert.mockImplementationOnce((args, callback) => {
