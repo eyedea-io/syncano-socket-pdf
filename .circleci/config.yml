@@ -43,7 +43,7 @@ jobs:
       - run: npm run test
 
       - store_artifacts:
-          path: ~/repo/test/.results
+          path: ~/repo/test/unit/.results
           destination: results
 
       - run: npm run test
