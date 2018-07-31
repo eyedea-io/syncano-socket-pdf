@@ -69,6 +69,7 @@
     }
   },
   "babel": {
+    "sourceMaps": "inline",
     "plugins": [
       "transform-class-properties"
     ],
