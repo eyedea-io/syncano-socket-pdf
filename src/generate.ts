@@ -4,7 +4,7 @@ import pdf from 'phantom-html2pdf'
 // Arguments
 interface Args {
   filename: string
-  html: string,
+  html: string
   css: string
 }
 
@@ -13,7 +13,7 @@ class Endpoint extends S.Endpoint<Args> {
     {response}: S.Core,
     {args, meta, config}: S.Context<Args>
   ) {
-    const output = await new Promise((resolve, reject) => {
+    await new Promise((resolve, reject) => {
       pdf.convert(args, (err, result) => {
         if (err) {
           reject({message: err.message})
