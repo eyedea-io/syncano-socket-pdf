@@ -1,11 +1,18 @@
 {
   "name": "@eyedea-sockets/pdf",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "public": true,
   "description": "Syncano Socket for generating PDF from HTML",
   "author": "EYEDEA",
   "repository": "https://github.com/eyedea-io/syncano-socket-pdf.git",
   "license": "MIT",
+  "keywords": [
+    "syncano",
+    "socket",
+    "pdf",
+    "html2pdf",
+    "phantomjs"
+  ],
   "peerDependencies": {
     "@syncano/cli": "0.13.0-alpha.e625a06e"
   },
