@@ -1,4 +1,4 @@
-# Syncano Socket for generating PDFs
+# Syncano Socket for generating PDF from HTML
 
 [![Syncano Socket](https://img.shields.io/badge/syncano-socket-blue.svg)](https://syncano.io)
 [![CircleCI branch](https://img.shields.io/circleci/project/github/eyedea-io/syncano-socket-pdf/master.svg)](https://circleci.com/gh/eyedea-io/syncano-socket-pdf/tree/master)
@@ -25,29 +25,6 @@ Use it:
 
 ```sh
 wget https://<instanceName>.syncano.site/pdf/generate?html=<h1>Tests</h1>
-```
-outputs:
-  success:
-    mimetype: application/pdf
-    description: PDF successfuly generated
-  fail:
-    mimetype: application/json
-    description: Zip generation failed
-    exit_code: 400
-    parameters:
-      message:
-        type: string
-const params = {
-  html: '<h1>Test!</h1>',
-  filename: 'test.pdf'
-}
-const invitationStatus = await s.get('slack/invite', params)
-
-// Listing users
-const params = {
-  token: 'xoxp-17802080787-17802080963-23787252214-e634269418'
-}
-const usersList = await s.get('slack/list', params)
 ```
 
 ## Endpoints

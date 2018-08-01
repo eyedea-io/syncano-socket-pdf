@@ -1,6 +1,6 @@
 {
   "name": "@eyedea-sockets/pdf",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "public": true,
   "description": "Syncano Socket for generating PDF from HTML",
   "author": "EYEDEA",
