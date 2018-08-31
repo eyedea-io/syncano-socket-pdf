@@ -7,6 +7,7 @@
   "repository": "https://github.com/eyedea-io/syncano-socket-pdf.git",
   "license": "MIT",
   "keywords": [
+    "serverless",
     "syncano",
     "socket",
     "pdf",
@@ -67,7 +68,11 @@
     "testMatch": [],
     "collectCoverage": true,
     "collectCoverageFrom": [
-      "src/**"
+      "src/**."
+    ],
+    "coveragePathIgnorePatterns": [
+      "node_modules",
+      ".dist/**"
     ],
     "coverageThreshold": {
       "global": {
