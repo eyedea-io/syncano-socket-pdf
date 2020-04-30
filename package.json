@@ -19,7 +19,8 @@
   },
   "dependencies": {
     "@eyedea/syncano": "0.2.0",
-    "phantom-html2pdf": "^4.0.1"
+    "phantom-html2pdf": "^4.0.1",
+    "snyk": "^1.316.1"
   },
   "scripts": {
     "build": "npm run build:src && npm run build:env",
@@ -30,7 +31,9 @@
     "test:unit": "NODE_ENV=test jest --forceExit --detectOpenHandles test/unit/.*\\.test\\.js",
     "test:e2e": "NODE_ENV=test jest test/e2e/.*\\.test\\.js",
     "test:audit": "npm audit",
-    "test:lint": "tslint --fix -c tslint.json ./src/**/*.ts"
+    "test:lint": "tslint --fix -c tslint.json ./src/**/*.ts",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.42",
@@ -100,5 +103,6 @@
         }
       ]
     ]
-  }
+  },
+  "snyk": true
 }
